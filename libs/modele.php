@@ -75,4 +75,16 @@ function get_book($id_book)
 	return parcoursRS(SQLSelect($SQL))[0];
 }
 
+function get_messages($idUser, $idreceiver, $idbook)
+{
+    // Récupère les messages entre $idUser et $idreceiver pour le livre $idbook
+    $SQL = "SELECT * FROM MESSAGES 
+            WHERE 
+                ((ID_SENDER = $idUser AND ID_RECEIVER = $idreceiver) 
+                OR (ID_SENDER = $idreceiver AND ID_RECEIVER = $idUser))
+            AND ID_BOOK = $idbook
+            ORDER BY DATE_ENVOI DESC";
+    return parcoursRs(SQLSelect($SQL));
+}
+
 ?>

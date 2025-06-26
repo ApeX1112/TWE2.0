@@ -2,6 +2,9 @@
 <?php
 include_once("libs/maLibUtils.php");
 include_once("libs/modele.php");
+$idreceiver=valider("idreceiver"); // ID of the message receiver
+$idbook=valider("idbook"); // ID of the book related to the message
+$messages=get_messages($_SESSION['idUser'],$idreceiver,$idbook); // fetching messages from the database
 
 ?>
 <!DOCTYPE html>
@@ -22,25 +25,28 @@ include_once("libs/modele.php");
     </div>
     <div class="main-content">
         <div class="chat-container">
-            <h1>Message Alice Johnson (Book Owner)</h1>
+            <h1>Message the Book Owner</h1>
             <div class="chat-box">
-                <div class="message sender">
-                    <p>Hi! I saw you are interested in "The Midnight Library". Are you still looking to borrow it?</p>
-                    <span class="timestamp">2024-07-28 10:30 AM</span>
-                </div>
-                <div class="message recipient">
-                    <p>Yes, I am! Is it still available?</p>
-                    <span class="timestamp">2024-07-28 10:35 AM</span>
-                </div>
-                <div class="message sender">
-                    <p>Absolutely! I can meet anytime tomorrow morning near the campus library if that works for you.</p>
-                    <span class="timestamp">2024-07-28 10:40 AM</span>
-                </div>
-                <div class="message recipient">
-                    <p>Tomorrow morning works great! Say, around 10 AM?</p>
-                    <span class="timestamp">2024-07-28 10:45 AM</span>
-                </div>
-            </div>
+
+                <?php
+                // Display messages
+                if (empty($messages)) {
+                    echo '<p class="no-messages">No messages found.</p>';
+                } else {
+                    foreach ($messages as $message) {
+                        // Determine if the message is sent or received
+                        $isSender = ($message['ID_SENDER'] == $_SESSION['idUser']);
+                        $messageClass = $isSender ? 'sender' : 'recipient';
+                        $messageText = htmlspecialchars($message['CONTENT']);
+                        $timestamp = htmlspecialchars($message['DATE_ENVOI']);
+                        echo "<div class='message $messageClass'>";
+                        echo "<p>$messageText</p>";
+                        echo "<span class='timestamp'>$timestamp</span>";
+                        echo "</div>";
+                    }
+                }
+                ?>
+                
             <div class="message-input">
                 <input type="text" placeholder="Type your message here...">
                 <button class="send-btn">Send</button>

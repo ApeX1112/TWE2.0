@@ -52,6 +52,30 @@ CREATE TABLE `LIVRES` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
   COMMENT='Table des livres prêtés';
 
+
+-- Table structure for table `HISTORY`
+DROP TABLE IF EXISTS `HISTORY`;
+CREATE TABLE `HISTORY` (
+  `ID_HISTORY` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Identifiant de l\'historique',
+  `ID_USER` INT(11) NOT NULL COMMENT 'Utilisateur concerné',
+  `ID_BOOK` INT(11) NOT NULL COMMENT 'Livre concerné',
+  `DATE_ACTION` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date de l\'action',
+  PRIMARY KEY (`ID_HISTORY`),
+  KEY `FK_HISTORY_USER` (`ID_USER`),
+  KEY `FK_HISTORY_BOOK` (`ID_BOOK`),
+  CONSTRAINT `FK_HISTORY_USER`
+    FOREIGN KEY (`ID_USER`)
+    REFERENCES `UTILISATEUR` (`ID_UTIL`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FK_HISTORY_BOOK`
+    FOREIGN KEY (`ID_BOOK`)
+    REFERENCES `LIVRES` (`ID_LIVRE`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+  COMMENT='Historique des interactions utilisateur/livre';
+
 --
 -- Dumping data for table `LIVRES`
 --
@@ -75,11 +99,13 @@ CREATE TABLE `MESSAGES` (
   `ID_MESSAGE` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Identifiant du message',
   `ID_SENDER` INT(11) NOT NULL COMMENT 'Émetteur du message',
   `ID_RECEIVER` INT(11) NOT NULL COMMENT 'Destinataire du message',
+  `ID_BOOK` INT(11) NOT NULL COMMENT 'Livre concerné par la discussion',
   `CONTENT` TEXT NOT NULL COMMENT 'Contenu du message',
   `DATE_ENVOI` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date et heure d’envoi',
   PRIMARY KEY (`ID_MESSAGE`),
   KEY `FK_MESSAGES_SENDER` (`ID_SENDER`),
   KEY `FK_MESSAGES_RECEIVER` (`ID_RECEIVER`),
+  KEY `FK_MESSAGES_BOOK` (`ID_BOOK`),
   CONSTRAINT `FK_MESSAGES_SENDER`
     FOREIGN KEY (`ID_SENDER`)
     REFERENCES `UTILISATEUR` (`ID_UTIL`)
@@ -89,20 +115,23 @@ CREATE TABLE `MESSAGES` (
     FOREIGN KEY (`ID_RECEIVER`)
     REFERENCES `UTILISATEUR` (`ID_UTIL`)
     ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FK_MESSAGES_BOOK`
+    FOREIGN KEY (`ID_BOOK`)
+    REFERENCES `LIVRES` (`ID_LIVRE`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
   COMMENT='Table des échanges de messages entre utilisateurs';
-
 --
 -- Dumping data for table `MESSAGES`
 --
 LOCK TABLES `MESSAGES` WRITE;
 /*!40000 ALTER TABLE `MESSAGES` DISABLE KEYS */;
-INSERT INTO `MESSAGES` (`ID_MESSAGE`,`ID_SENDER`,`ID_RECEIVER`,`CONTENT`,`DATE_ENVOI`) VALUES
-  (1, 1,  2, 'Bonjour, je suis intéressé par ton livre.',        '2025-06-20 09:15:00'),
-  (2, 2,  1, 'Salut, il est encore disponible ?',               '2025-06-20 10:00:00'),
-  (3, 3,  4, 'Peux-tu me prêter Clean Code ce week-end ?',       '2025-06-21 14:30:00'),
-  (4, 4,  3, 'Oui, je te le réserve jusqu’à dimanche soir.',    '2025-06-21 15:00:00'),
-  (5, 5,  1, 'Merci, où doit-on se rencontrer pour la remise ?', '2025-06-22 11:45:00');
-/*!40000 ALTER TABLE `MESSAGES` ENABLE KEYS */;
+INSERT INTO `MESSAGES` (`ID_MESSAGE`,`ID_SENDER`,`ID_RECEIVER`,`ID_BOOK`,`CONTENT`,`DATE_ENVOI`) VALUES
+  (1, 1,  2, 1, 'Bonjour, je suis intéressé par ton livre.',        '2025-06-20 09:15:00'),
+  (2, 2,  1, 1, 'Salut, il est encore disponible ?',                '2025-06-20 10:00:00'),
+  (3, 3,  4, 4, 'Peux-tu me prêter Clean Code ce week-end ?',       '2025-06-21 14:30:00'),
+  (4, 4,  3, 4, 'Oui, je te le réserve jusqu’à dimanche soir.',     '2025-06-21 15:00:00'),
+  (5, 5,  1, 5, 'Merci, où doit-on se rencontrer pour la remise ?', '2025-06-22 11:45:00');
 UNLOCK TABLES;

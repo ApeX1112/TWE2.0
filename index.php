@@ -36,10 +36,20 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 			include("templates/login.php");
 		break; 
 		case "profile" : 
+			if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+				header("Location: index.php?view=login&msg=" . urlencode("Veuillez vous connecter pour accéder à votre profil."));
+				exit();
+			}
 			include("templates/profile.php");
 		break;
 
 		case "addbook" : 
+			if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+				header("Location: index.php?view=login&msg=" . urlencode("Veuillez vous connecter pour ajouter un livre."));
+				exit();
+			}
 			include("templates/addbook.php");
 		break;
 
@@ -48,6 +58,11 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 		break;
 
 		case "messages" : 
+			if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+				header("Location: index.php?view=login&msg=" . urlencode("Veuillez vous connecter pour envoyer un message."));
+				exit();
+			}
 			include("templates/messages.php");
 		break;
 

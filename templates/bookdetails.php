@@ -39,7 +39,7 @@ $book=get_book($bookid); //   fetches book details from the database
                     echo '<h2>' . htmlspecialchars($book['NOM_LIVRE']) . '</h2>'; 
                     echo '<p><strong>Owner:</strong> ' . htmlspecialchars(get_author_name($book['ID_LIVRE'])) . '</p>';
                     //echo '<p><strong>Genre:</strong> ' . htmlspecialchars($book['GENRE']) . '</p>';
-                    echo '<button><a  href="index.php?view=messages">Send a message to the owner</a></button>';
+                    echo '<button><a href="index.php?view=messages&idreceiver=' . $book['PROPRIETAIRE_ID'] . '&idbook=' . $book['ID_LIVRE'] . '">Send a message to the owner</a></button>';
                     
                     ?>
                     <div class="about-book">
