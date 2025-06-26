@@ -1,3 +1,9 @@
+
+<?php
+include_once("libs/maLibUtils.php");
+include_once("libs/modele.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

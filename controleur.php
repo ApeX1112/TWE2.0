@@ -28,6 +28,17 @@ session_start();
 				}
 
 				// On redirigera vers la page index automatiquement
+				if (isset($_SESSION["connecte"]) && $_SESSION["connecte"] == true)
+				{
+					// On redirige vers la page d'accueil
+					$qs = "?view=accueil";
+				}
+				else
+				{
+					// On redirige vers la page de connexion avec un message d'erreur
+					$qs = "?view=login&msg=" . urlencode("Identifiant ou mot de passe incorrect");
+				}
+				
 			break;
 
 			case 'Logout' :

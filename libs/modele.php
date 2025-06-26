@@ -17,7 +17,7 @@ function verifUserBdd($login,$passe)
 	// dont les identifiants sont passes en paramètre
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
-	$SQL = "SELECT ID_MEMBRE FROM MEMBRE WHERE LOGIN='$login' AND MDP='$passe'";
+	$SQL = "SELECT ID_UTIL FROM UTILISATEUR WHERE NOM_UTIL='$login' AND MOT_DE_PASSE='$passe'";
 	//die($SQL);
 	return SQLGetChamp($SQL);
 

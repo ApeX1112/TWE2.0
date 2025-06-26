@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="login-container">
         <h1>Welcome Back!</h1>
-        <form action="#" method="POST">
+        <form action="controleur.php" method="POST">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                <input  id="email" name="login" placeholder="name" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="********" required>
+                <input type="password" id="password" name="passe" placeholder="********" required>
             </div>
-            <button type="submit" class="sign-in-btn">Sign In</button>
+            <input type="submit" class="sign-in-btn" name="action" value="Connexion"/>
         </form>
     </div>
 </body>
 </html>
+
+
+
+
+

@@ -20,7 +20,14 @@ include_once("libs/modele.php");
     </div>
     <div class="main-content">
         <header>
-            <h1>Listed Books</h1>
+            <?php
+            echo '<h1>Listed Books</h1>';
+            if (isset($_SESSION['pseudo'])) {
+                echo '<p>Welcome, ' . htmlspecialchars($_SESSION['pseudo']) . '!</p>';
+            } else {
+                echo '<p>Welcome, Guest!</p>';
+            }
+            ?>
             <input type="text" placeholder="Search for books..." class="search-bar">
         </header>
         <div class="books-container">
