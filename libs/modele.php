@@ -61,5 +61,11 @@ function get_Books()
 	$SQL = "SELECT * FROM LIVRES ";
 	return parcoursRs(SQLSelect($SQL));
 }
+function get_author_name($id_book)
+{
+	// Récupère le nom de l'auteur du livre dont l'id est passé en paramètre
+	$SQL = "SELECT NOM_UTIL FROM UTILISATEUR WHERE ID_UTIL = $id_book";
+	return SQLGetChamp($SQL);
+}
 
 ?>

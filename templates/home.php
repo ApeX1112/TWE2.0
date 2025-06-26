@@ -26,13 +26,13 @@ include_once("libs/modele.php");
         <div class="books-container">
             <?php
             // Fetch books from the database
-            $books = get_Books(); // this function fetches books from the database
+            $books = get_Books(); // this function fetches books from the database 
 
             foreach($books as $book) {
                 echo '<div class="book">';
                 echo '<img src="' . htmlspecialchars($book['COVER_IMAGE']) . '" alt="' . htmlspecialchars($book['NOM_LIVRE']) . '">';
                 echo '<h3>' . htmlspecialchars($book['NOM_LIVRE']) . '</h3>';
-                echo '<p>' . htmlspecialchars($book['author']) . '</p>';
+                echo '<p>' . htmlspecialchars(get_author_name($book['PROPRIETAIRE_ID'])) . '</p>';
                 echo '<span class="status ' . ($book['STATUS'] == 'VALABLE' ? 'available' : 'on-loan') . '">' . ucfirst($book['STATUS']) . '</span>';
                 echo '</div>';
             };
