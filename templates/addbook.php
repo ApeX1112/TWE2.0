@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register New Book</title>
     <link rel="stylesheet" href="css/addbook.css">
+    <style>
+        /* Ajoute ceci dans css/home.css ou le CSS global */
+        .sidebar a.active {
+            font-weight: bold;
+            color: #007bff;
+            background: #e6e6e6;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="index.php?view=accueil">Home</a></li>
+            <li><a href="index.php?view=home">Home</a></li>
             <li><a href="index.php?view=profile">Profile</a></li>
-            <li><a href="index.php?view=addbook">Add Book</a></li>
+            <li><a href="index.php?view=addbook" class="active">Add Book</a></li>
         </ul>
     </div>
     <div class="main-content">

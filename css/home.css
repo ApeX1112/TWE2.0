@@ -105,3 +105,9 @@ header h1 {
     background-color: #f44336;
     color: white;
 }
+.sidebar a.active {
+            font-weight: bold;
+            color: #007bff;
+            background: #e6e6e6;
+            border-radius: 4px;
+        }

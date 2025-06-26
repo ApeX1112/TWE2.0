@@ -4,54 +4,6 @@ include_once("libs/modele.php");
 
 <!DOCTYPE html>
 <html lang="en">
-<!--
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-    <link rel="stylesheet" href="css/profile.css">
-</head>
-<body>
-    <div class="sidebar">
-        <ul>
-            <li><a href="index.php?view=accueil">Home</a></li>
-            <li><a href="index.php?view=profile">Profile</a></li>
-            <li><a href="index.php?view=addbook">Add Book</a></li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <header>
-            <h1> Books history </h1>
-        </header>
-        <div class="books-container">
-            <div class="book">
-                <img src="book1.jpg" alt="The Great Novel">
-                <h3>The Great Novel</h3>
-                <p>Jane Doe</p>
-                <span class="status available">Available</span>
-            </div>
-            <div class="book">
-                <img src="book2.jpg" alt="Space Explorers">
-                <h3>Space Explorers</h3>
-                <p>David Futures</p>
-                <span class="status on-loan">On Loan</span>
-            </div>
-            <div class="book">
-                <img src="book3.jpg" alt="Historical Echoes">
-                <h3>Historical Echoes</h3>
-                <p>Emily White</p>
-                <span class="status on-loan">On Loan</span>
-            </div>
-            <div class="book">
-                <img src="book4.jpg" alt="Culinary Journey">
-                <h3>Culinary Journey</h3>
-                <p>Chef Antoine</p>
-                <span class="status available">Available</span>
-            </div>
-        </div>
-    </div>
-</body>
--->
 
 
 
@@ -67,11 +19,20 @@ include_once("libs/modele.php");
     <title>Book List</title>
     <link rel="stylesheet" href="css/profile.css">
 </head>
+ <style>
+        /* Ajoute ceci dans css/home.css ou le CSS global */
+        .sidebar a.active {
+            font-weight: bold;
+            color: #007bff;
+            background: #e6e6e6;
+            border-radius: 4px;
+        }
+    </style>
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="index.php?view=accueil">Home</a></li>
-            <li><a href="index.php?view=profile">Profile</a></li>
+            <li><a href="index.php?view=home">Home</a></li>
+            <li><a href="index.php?view=profile" class="active">Profile</a></li>
             <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
     </div>

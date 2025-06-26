@@ -1,4 +1,3 @@
-
 <?php
 include_once("libs/modele.php");
 ?>
@@ -9,11 +8,20 @@ include_once("libs/modele.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book List</title>
     <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* Ajoute ceci dans css/home.css */
+        .sidebar a.active {
+            font-weight: bold;
+            color: #007bff;
+            background: #e6e6e6;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="index.php?view=home">Home</a></li>
+            <li><a href="index.php?view=home" class="active">Home</a></li>
             <li><a href="index.php?view=profile">Profile</a></li>
             <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
