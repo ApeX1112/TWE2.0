@@ -47,6 +47,44 @@ session_start();
 				session_destroy();
 				$qs = "?view=login&msg=" . urlencode("A bientôt !");
 				break;
+			case 'Send' :
+				// on envoie le message
+				if ($idreceiver = valider("idreceiver"))
+				if ($idbook = valider("idbook"))
+				if ($content = valider("content"))
+				{
+					// On envoie le message
+					$ok = send_message($_SESSION['idUser'], $idreceiver, $idbook, $content);
+					if ($ok)
+					{
+						// On redirige vers la page de messages
+						$qs = "?view=messages&idreceiver=" . $idreceiver . "&idbook=" . $idbook;
+					}
+					else
+					{
+						// On redirige vers la page de messages avec un message d'erreur
+						$qs = "?view=messages&idreceiver=" . $idreceiver . "&idbook=" . $idbook . "&msg=" . urlencode("Erreur lors de l'envoi du message");
+					}
+				}
+				break;
+			case 'Search' :
+				// On effectue une recherche de livres
+				if ($content = valider("content"))
+				{
+					// On effectue la recherche
+					$books = Search($content);
+					if ($books)
+					{
+						// On redirige vers la page d'accueil avec les résultats de la recherche
+						$qs = "?view=accueil&search=" . urlencode($content);
+					}
+					else
+					{
+						// On redirige vers la page d'accueil avec un message d'erreur
+						$qs = "?view=accueil&msg=" . urlencode("Aucun livre trouvé pour '$content'");
+					}
+				}
+				break;
 		}
 
 	}

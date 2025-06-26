@@ -61,6 +61,12 @@ function get_Books()
 	$SQL = "SELECT * FROM LIVRES ";
 	return parcoursRs(SQLSelect($SQL));
 }
+function get_BooksByUser($idUser)
+{
+	// Récupère la liste des livres de l'utilisateur dont l'id est passé en paramètre
+	$SQL = "SELECT * FROM LIVRES WHERE PROPRIETAIRE_ID = $idUser";
+	return parcoursRs(SQLSelect($SQL));
+}
 function get_author_name($id_book)
 {
 	// Récupère le nom de l'auteur du livre dont l'id est passé en paramètre
@@ -83,14 +89,23 @@ function get_messages($idUser, $idreceiver, $idbook)
                 ((ID_SENDER = $idUser AND ID_RECEIVER = $idreceiver) 
                 OR (ID_SENDER = $idreceiver AND ID_RECEIVER = $idUser))
             AND ID_BOOK = $idbook
-            ORDER BY DATE_ENVOI DESC";
+			ORDER BY DATE_ENVOI ASC";
+			// l'o
     return parcoursRs(SQLSelect($SQL));
 }
-function add_message($idSender, $idReceiver, $idBook, $content)
+function send_message($idSender, $idReceiver, $idBook, $content)
 {
 	// Ajoute un message à la base de données
 	$SQL = "INSERT INTO MESSAGES (ID_SENDER, ID_RECEIVER, ID_BOOK, CONTENT, DATE_ENVOI) 
 			VALUES ($idSender, $idReceiver, $idBook, '$content', NOW())";
 	return SQLInsert($SQL);
 }
+function Search($content)
+{
+	// Recherche des livres dont le nom contient le contenu passé en paramètre
+	$SQL = "SELECT * FROM LIVRES WHERE NOM_LIVRE LIKE '%$content%'";
+	return parcoursRs(SQLSelect($SQL));
+}
+
 ?>
+

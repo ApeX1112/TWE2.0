@@ -95,7 +95,7 @@ h1 {
     align-items: center;
 }
 
-.message-input input {
+.message-input input[type="text"] {
     width: 80%;
     padding: 10px;
     border: 1px solid #ccc;
