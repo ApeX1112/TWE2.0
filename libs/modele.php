@@ -106,6 +106,16 @@ function Search($content)
 	$SQL = "SELECT * FROM LIVRES WHERE NOM_LIVRE LIKE '%$content%'";
 	return parcoursRs(SQLSelect($SQL));
 }
+function get_User_history($idUser)
+{
+    // Récupère l'historique des livres que l'utilisateur a empruntés
+    $SQL = "SELECT L.* 
+            FROM HISTORY H
+            JOIN LIVRES L ON H.ID_BOOK = L.ID_LIVRE
+            WHERE H.ID_USER = $idUser
+            ORDER BY H.DATE_ACTION DESC";
+    return parcoursRs(SQLSelect($SQL));
+}
 
 ?>
 

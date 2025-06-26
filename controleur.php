@@ -75,7 +75,7 @@ session_start();
 					$books = Search($content);
 					if ($books)
 					{
-						// On redirige vers la page d'accueil avec les résultats de la recherche
+						$_SESSION['search_results'] = $books; 
 						$qs = "?view=accueil&search=" . urlencode($content);
 					}
 					else

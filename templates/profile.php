@@ -104,7 +104,23 @@ include_once("libs/modele.php");
             <?php
             echo '<h1>History</h1>';
             ?>
-            </header>
+        </header>
+        <div class="history-container">
+            <?php
+            // Fetch books from the database
+            $books = get_User_history($_SESSION['idUser']); // this function fetches books from the database 
+
+            foreach($books as $book) {
+                echo '<div class="book">';
+                //echo '<img src="' . htmlspecialchars($book['COVER_IMAGE']) . '" alt="' . htmlspecialchars($book['NOM_LIVRE']) . '">';
+                echo '<h3><a href="index.php?view=bookdetails&bookid='. $book['ID_LIVRE'] . '">' . htmlspecialchars($book['NOM_LIVRE']) . '</a></h3>';
+                echo '<p>' . htmlspecialchars(get_author_name($book['PROPRIETAIRE_ID'])) . '</p>';
+                echo '<span class="status ' . ($book['STATUS'] == 'VALABLE' ? 'available' : 'on-loan') . '">' . ucfirst($book['STATUS']) . '</span>';
+                echo '</div>';
+            };
+
+            ?>
+        </div>
     </div>
 </body>
 </html>

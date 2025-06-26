@@ -13,7 +13,7 @@ include_once("libs/modele.php");
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.php?view=home">Home</a></li>
             <li><a href="index.php?view=profile">Profile</a></li>
             <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
@@ -39,8 +39,22 @@ include_once("libs/modele.php");
         </header>
         <div class="books-container">
             <?php
+            if($search=valider("search")){
+               $books = $_SESSION['search_results'];
+            }else if($msg = valider("msg")){
+                // creer un message d'alerte pour cette erreur 
+                echo '<script>alert("'. htmlspecialchars($msg) .'");</script>';
+                $books = get_Books(); 
+            }
+            
+            else{
+                $books = get_Books(); // this function fetches books from the database
+            }
+                
+            
+            
             // Fetch books from the database
-            $books = get_Books(); // this function fetches books from the database 
+
 
             foreach($books as $book) {
                 echo '<div class="book">';
