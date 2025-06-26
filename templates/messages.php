@@ -46,7 +46,28 @@ $messages=get_messages($_SESSION['idUser'],$idreceiver,$idbook); // fetching mes
                     }
                 }
                 ?>
-                
+            <?php// add message to data base when send button is clicked   
+            // This part should be handled by a form submission, which is not shown here.
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $content = valider("message_content");
+                if (!empty($content)) {
+                    $idSender = $_SESSION['idUser'];
+                    $idReceiver = $idreceiver; // ID of the message receiver
+                    $idBook = $idbook; // ID of the book related to the message
+                    $result = add_message($idSender, $idReceiver, $idBook, $content);
+                    if ($result) {
+                        echo "<div class='message sender'>";
+                        echo "<p>" . htmlspecialchars($content) . "</p>";
+                        echo "<span class='timestamp'>" . date('Y-m-d H:i:s') . "</span>";
+                        echo "</div>";
+                    } else {
+                        echo "<p class='error'>Failed to send message.</p>";
+                    }
+                } else {
+                    echo "<p class='error'>Message content cannot be empty.</p>";
+                }
+            }
+            ?>
             <div class="message-input">
                 <input type="text" placeholder="Type your message here...">
                 <button class="send-btn">Send</button>

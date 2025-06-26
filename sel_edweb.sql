@@ -42,6 +42,7 @@ CREATE TABLE `LIVRES` (
   `DESCRIPTION` TEXT NULL COMMENT 'Description longue du livre',
   `COVER_IMAGE` LONGBLOB NULL COMMENT 'Image de couverture (donnée binaire)',
   `PROPRIETAIRE_ID` INT(11) NOT NULL COMMENT 'Référence à l’utilisateur propriétaire',
+  `ID_EMPRUNTEUR` INT(11) DEFAULT NULL COMMENT 'Référence à l’utilisateur qui a emprunté le livre',
   PRIMARY KEY (`ID_LIVRE`),
   KEY `FK_LIVRES_UTILISATEUR` (`PROPRIETAIRE_ID`),
   CONSTRAINT `FK_LIVRES_UTILISATEUR`
@@ -81,12 +82,12 @@ CREATE TABLE `HISTORY` (
 --
 LOCK TABLES `LIVRES` WRITE;
 /*!40000 ALTER TABLE `LIVRES` DISABLE KEYS */;
-INSERT INTO `LIVRES` (`ID_LIVRE`,`NOM_LIVRE`,`STATUS`,`DESCRIPTION`,`COVER_IMAGE`,`PROPRIETAIRE_ID`) VALUES
-  (1, 'Le Petit Prince',    'VALABLE',    'Conte poétique et philosophique',          NULL, 1),
-  (2, '1984',               'VALABLE',    'Roman dystopique de George Orwell',        NULL, 2),
-  (3, 'Les Misérables',     'NON_VALABLE','Épopée sociale de Victor Hugo',            NULL, 3),
-  (4, 'Clean Code',         'VALABLE',    'Guide pour écrire un code propre',         NULL, 4),
-  (5, 'Introduction SQL',   'VALABLE',    'Cours et exercices sur le langage SQL',    NULL, 5);
+INSERT INTO `LIVRES` (`ID_LIVRE`,`NOM_LIVRE`,`STATUS`,`DESCRIPTION`,`COVER_IMAGE`,`PROPRIETAIRE_ID`,'ID_EMPRUNTEUR') VALUES
+  (1, 'Le Petit Prince',    'VALABLE',    'Conte poétique et philosophique',          NULL, 1,1),
+  (2, '1984',               'VALABLE',    'Roman dystopique de George Orwell',        NULL, 2,2),
+  (3, 'Les Misérables',     'NON_VALABLE','Épopée sociale de Victor Hugo',            NULL, 3,3),
+  (4, 'Clean Code',         'VALABLE',    'Guide pour écrire un code propre',         NULL, 4,4),
+  (5, 'Introduction SQL',   'VALABLE',    'Cours et exercices sur le langage SQL',    NULL, 5,5);
 /*!40000 ALTER TABLE `LIVRES` ENABLE KEYS */;
 UNLOCK TABLES;
 

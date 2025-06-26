@@ -1,7 +1,7 @@
 <?php
 
 $BDD_host="localhost";
-$BDD_user="newuser";
-$BDD_password="StrongPassword123!"; // mot de passe de l'utilisateur
-$BDD_base="mybiblio"; // nom de la base de données
+$BDD_user="admin";
+$BDD_password="mysql"; // mot de passe de l'utilisateur
+$BDD_base="ma_bibliotheque"; // nom de la base de données
 ?>

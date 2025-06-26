@@ -86,5 +86,11 @@ function get_messages($idUser, $idreceiver, $idbook)
             ORDER BY DATE_ENVOI DESC";
     return parcoursRs(SQLSelect($SQL));
 }
-
+function add_message($idSender, $idReceiver, $idBook, $content)
+{
+	// Ajoute un message à la base de données
+	$SQL = "INSERT INTO MESSAGES (ID_SENDER, ID_RECEIVER, ID_BOOK, CONTENT, DATE_ENVOI) 
+			VALUES ($idSender, $idReceiver, $idBook, '$content', NOW())";
+	return SQLInsert($SQL);
+}
 ?>
