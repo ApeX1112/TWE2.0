@@ -9,8 +9,8 @@
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="index.php?view=accueil">Home</a></li>
+            <li><a href="index.php?view=profile">Profile</a></li>
             <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
     </div>

@@ -3,6 +3,9 @@
 include_once("libs/maLibUtils.php");
 include_once("libs/modele.php");
 $bookid = valider("bookid");
+
+$book=get_book($bookid); //   fetches book details from the database
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,35 +26,35 @@ $bookid = valider("bookid");
     <div class="main-content">
         <div class="book-details">
             <h1>Book Details</h1>
-<!-- afficjer l id de livre  -->
             
-            <?php
-
-            
-            echo '<p class="book-id">Book ID: ' . htmlspecialchars($bookid) . '</p>'; // Debug 
-
-            $book=get_book($bookid); //  this function fetches book details from the database
-            echo '<p class="book-id">Book name: ' . htmlspecialchars($book['NOM_LIVRE']) . '</p>'; // Display book ID
-
-            ?>
             <div class="book-info">
                 <div class="book-image">
-                    <img src="book.jpg" alt="The Midnight Library">
+                    <?php
+                    echo '<img src="book.jpg" alt="'. $book['NOM_LIVRE'] . '"'; // Placeholder image, replace with actual image path
+                    ?>
                 </div>
                 <div class="book-summary">
-                    <h2>The Midnight Library</h2>
-                    <p><strong>Author:</strong> Matt Haig</p>
-                    <p><strong>Genre:</strong> Fiction, Fantasy</p>
-                    <button class="message-btn">Send a message to the owner</button>
+                    <?php
+
+                    echo '<h2>' . htmlspecialchars($book['NOM_LIVRE']) . '</h2>'; 
+                    echo '<p><strong>Owner:</strong> ' . htmlspecialchars(get_author_name($book['ID_LIVRE'])) . '</p>';
+                    //echo '<p><strong>Genre:</strong> ' . htmlspecialchars($book['GENRE']) . '</p>';
+                    echo '<button><a  href="index.php?view=messages">Send a message to the owner</a></button>';
+                    
+                    ?>
                     <div class="about-book">
                         <h3>About the Book</h3>
-                        <p>
-                            Nora Seed, a woman filled with regrets, finds herself in the Midnight Library, a place between life and death. Each book in the library offers a chance to live a different life. Nora must decide which life to live, and how she wants to change her reality.
-                        </p>
+                        <?php
+                        echo '<p>' . htmlspecialchars($book['DESCRIPTION']) . '</p>';
+                        ?>
                         <button class="show-more">Show More</button>
                     </div>
-                    <p><strong>Owner:</strong> Alice Johnson</p>
-                    <p><strong>Availability:</strong> Available</p>
+                    <?php
+                        echo '<p><strong>Owner:</strong> ' . htmlspecialchars(get_author_name($book['ID_LIVRE'])) . '</p>';
+                        echo '<p><strong>Availability:</strong> ' . htmlspecialchars($book['STATUS']) . '</p>';
+                        
+                    ?>
+                    
                 </div>
             </div>
         </div>
