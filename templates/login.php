@@ -1,3 +1,10 @@
+<?php
+include_once("libs/maLibSecurisation.php");
+include_once("libs/modele.php");
+
+$msg=valider("msg");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +27,11 @@
             </div>
             <input type="submit" class="sign-in-btn" name="action" value="Connexion"/>
         </form>
+        <?php
+        if ($msg) {
+            echo '<div class="error-message">' . htmlspecialchars($msg) . '</div>';
+        }
+        ?>
     </div>
 </body>
 </html>

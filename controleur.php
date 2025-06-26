@@ -22,6 +22,8 @@ session_start();
 				if ($login = valider("login"))
 				if ($passe = valider("passe"))
 				{
+					session_destroy();
+					session_start(); 
 					// On verifie l'utilisateur, et on crée des variables de session si tout est OK
 					// Cf. maLibSecurisation
 					verifUser($login,$passe); 	
