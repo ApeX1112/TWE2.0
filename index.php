@@ -43,6 +43,10 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 			include("templates/addbook.php");
 		break;
 
+		case "bookdetails" : 
+			include("templates/bookdetails.php");
+		break;
+
 
 		default : // si le template correspondant à l'argument existe, on l'affiche
 			if (file_exists("templates/$view.php"))

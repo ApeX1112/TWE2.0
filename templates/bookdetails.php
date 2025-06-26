@@ -1,22 +1,39 @@
+
+<?php
+include_once("libs/maLibUtils.php");
+include_once("libs/modele.php");
+$bookid = valider("bookid");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Details</title>
-    <link rel="stylesheet" href="bookdetails.css">
+    <link rel="stylesheet" href="css/bookdetails.css">
 </head>
 <body>
     <div class="sidebar">
         <ul>
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Add Book</a></li>
+            <li><a href="index.php?view=accueil">Home</a></li>
+            <li><a href="index.php?view=profile">Profile</a></li>
+            <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
     </div>
     <div class="main-content">
         <div class="book-details">
             <h1>Book Details</h1>
+<!-- afficjer l id de livre  -->
+            
+            <?php
+
+            
+            echo '<p class="book-id">Book ID: ' . htmlspecialchars($bookid) . '</p>'; // Debug 
+
+            $book=get_book($bookid); //  this function fetches book details from the database
+            echo '<p class="book-id">Book name: ' . htmlspecialchars($book['NOM_LIVRE']) . '</p>'; // Display book ID
+
+            ?>
             <div class="book-info">
                 <div class="book-image">
                     <img src="book.jpg" alt="The Midnight Library">
