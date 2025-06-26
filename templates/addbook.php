@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register New Book</title>
-    <link rel="stylesheet" href="addbook.css">
+    <link rel="stylesheet" href="css/addbook.css">
 </head>
 <body>
     <div class="sidebar">
         <ul>
             <li><a href="#">Catalog</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="index.php?view=profile">Profile</a></li>
             <li><a href="#">Add Book</a></li>
         </ul>
     </div>

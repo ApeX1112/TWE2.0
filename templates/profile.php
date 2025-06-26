@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book List</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
     <div class="sidebar">
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Add Book</a></li>
+            <li><a href="index.php?view=addbook">Add Book</a></li>
         </ul>
     </div>
     <div class="main-content">
         <header>
-            <h1>Listed Books</h1>
-            <input type="text" placeholder="Search for books..." class="search-bar">
+            <h1> Books history </h1>
         </header>
         <div class="books-container">
             <div class="book">
